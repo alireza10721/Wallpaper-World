@@ -22,7 +22,7 @@ jobs:
 
       - name: Extract project
         run: |
-          unzip -q Wallpaper-World-Android-Project.zip -d project
+          unzip -q Wallpaper-World-Android-Project-1.zip -d project
 
       - name: Build APK
         run: |

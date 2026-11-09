@@ -24,9 +24,22 @@ jobs:
         run: |
           unzip -q Wallpaper-World-Android-Project-1.zip -d project
 
+      
+
       - name: Build APK
         run: |
-          cd project
+          GRADLEW=$(find project -type f -name gradlew -print -quit)
+
+          if [ -z "$GRADLEW" ]; then
+            echo "Gradle wrapper not found!"
+            find project -maxdepth 5 -type f
+            exit 1
+          fi
+
+          PROJECT_DIR=$(dirname "$GRADLEW")
+          echo "Project directory: $PROJECT_DIR"
+
+          cd "$PROJECT_DIR"
           chmod +x gradlew
           ./gradlew assembleDebug
 
